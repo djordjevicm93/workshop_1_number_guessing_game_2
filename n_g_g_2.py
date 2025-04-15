@@ -1,28 +1,31 @@
-def ngg_2():
-    # START
-    print("Think about a number from 0 to 1000, and let me guess it!")
-    min = 0
+def ngg2():
+    """
+    Number guessing game 2
+
+    Computer is guessing your number 1 to 1000.
+    You answer: too high, too low, you win.
+    Try it.
+    """
+    print("Think about a number from 1 to 1000, and let me guess it!")
+    min = 1
     max = 1000
-    moves_10 = 0
-    while moves_10 >= 10:
-        guess = int((max - min) / 2) + min
-        print("Guessing:", guess)
-        read_answer = input("too low, too high, you guessed")
-        moves_10 += 1
-        if read_answer == "you guessed":
+    moves = 0
+    max_moves = 10
+    while moves < max_moves:
+        guess = (max - min) // 2 + min
+        print(f"Guessing: {guess}")
+        answers = input("Enter your response ('Too low', 'Too high', 'You win'): ").strip().lower()
+        if answers == "you win":
             print("I won!")
-            break
-            # STOP
-        elif read_answer == "too high":
+            return
+        elif answers == "too high":
             max = guess
-        elif read_answer == "too low":
+        elif answers == "too low":
             min = guess
         else:
-            print("Dont cheat!")
-            break
-        if moves_10 >= 10:
-            print("Game over...")
-            break
-    return 
-    
-ngg_2()
+            print("Don't cheat!")
+            return
+        moves += 1
+    print("Hmm... something's wrong. Are you sure you're not cheating?")
+
+ngg2()
